@@ -10,13 +10,13 @@ export function Explosion(point, force, radius){
   testgraphics.drawCircle(0, 0, radius-0.5)
 
   this.body = new p2.Body({
-           mass: 0,
-           position: this.point,
-           angle: 0,
-           velocity: [0, 0],
-           angularVelocity: 0,
-           collisionResponse:false
-       });
+    mass: 0,
+    position: this.point,
+    angle: 0,
+    velocity: [0, 0],
+    angularVelocity: 0,
+    collisionResponse:false
+  });
   this.body.addShape(new p2.Circle({ radius: radius }));
 
   this.body.onCollision = (e) =>{
@@ -38,7 +38,8 @@ export function Explosion(point, force, radius){
     config.container.addChild(testgraphics);
     window.setTimeout(() => {
       config.world.removeBody(this.body);
-      config.container.removeChild(testgraphics);}, 33)
+      config.container.removeChild(testgraphics);
+    }, 33)
   }
 
 }

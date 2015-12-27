@@ -7,22 +7,22 @@ import {Explosion} from './Explosion.js'
 import {Bomb} from './Bomb.js'
 
 var _ = require('lodash');
-var world = config.world,
-renderer = config.renderer,
-stage = config.stage,
-container = config.container;
+var world = config.world
+var renderer = config.renderer
+var stage = config.stage
+var container = config.container;
 
-var carTexture,
-wheelTexture,
-graphics,
-chassisBody,
-player,
-cars=[],
-menuText = {},
-menuSpriteY;
+var carTexture
+var wheelTexture
+var graphics
+var chassisBody
+var player
+var cars=[]
+var menuText = {}
+var menuSpriteY;
 
-var playing = false,
-    inMenu = true;
+var playing = false
+var inMenu = true;
 
 //only initialize when all textures are loaded
 PIXI.loader.once('complete',init);
@@ -103,31 +103,33 @@ function init(){
   });
   function onInputChange(){
     // Steer value zero means straight forward. Positive is left and negative right.
-    if (playing) {player.chassisBody.frontWheel.steerValue = maxSteer * (keys[37] - keys[39]);
-    player.wheelSprite[0].rotation = player.wheelSprite[1].rotation = 0.5*(keys[37] - keys[39])
-    player.chassisBody.backWheel.setBrakeForce(0);
-    if(keys[40]){
-      if(player.chassisBody.backWheel.getSpeed() > 0.1){
-        // Moving forward - add some brake force to slow down
-        player.chassisBody.backWheel.setBrakeForce(2);
-      } else {
-        // Moving backwards - reverse the engine force
-        player.chassisBody.backWheel.setBrakeForce(2);
+    if (playing) {
+      player.chassisBody.frontWheel.steerValue = maxSteer * (keys[37] - keys[39]);
+      player.wheelSprite[0].rotation = player.wheelSprite[1].rotation = 0.5*(keys[37] - keys[39])
+      player.chassisBody.backWheel.setBrakeForce(0);
+
+      if (keys[40]) {
+        if (player.chassisBody.backWheel.getSpeed() > 0.1) {
+          // Moving forward - add some brake force to slow down
+          player.chassisBody.backWheel.setBrakeForce(2);
+        } else {
+          // Moving backwards - reverse the engine force
+          player.chassisBody.backWheel.setBrakeForce(2);
+        }
       }
-    }
-  } else if(inMenu && keys[13]){
-    playing = true;
-    inMenu = false;
-    for (var text in menuText) {
-      if (menuText.hasOwnProperty(text)) {
-        menuText[text].alpha = 0;
+    } else if (inMenu && keys[13]) {
+      playing = true;
+      inMenu = false;
+      for (var text in menuText) {
+        if (menuText.hasOwnProperty(text)) {
+          menuText[text].alpha = 0;
+        }
       }
+      levels.test.load(levels.test.texture)
+      var car = _.sample(Cars)
+      player =  new car();
+      new Bomb(300,-300)
     }
-    levels.test.load(levels.test.texture)
-    var car = _.sample(Cars)
-    player =  new car();
-    new Bomb(300,-300)
-  }
   }
 
   animate();

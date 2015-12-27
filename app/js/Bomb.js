@@ -4,13 +4,13 @@ import {Explosion} from './Explosion.js'
 export class Bomb {
   constructor(x,y){
     this.body = new p2.Body({
-             mass: 0,
-             position: [x/config.zoom, y/config.zoom],
-             angle: 0,
-             velocity: [0, 0],
-             angularVelocity: 0,
-             collisionResponse:false
-         });
+      mass: 0,
+      position: [x/config.zoom, y/config.zoom],
+      angle: 0,
+      velocity: [0, 0],
+      angularVelocity: 0,
+      collisionResponse:false
+    });
     this.body.addShape(new p2.Circle({ radius: 1 }));
 
     this.graphics= new PIXI.Graphics();
@@ -20,7 +20,7 @@ export class Bomb {
     this.graphics.position.y = this.body.position[1];
     config.world.addBody(this.body);
     config.container.addChild(this.graphics);
-    this.body.onCollision = (e) =>{
+    this.body.onCollision = (e) => {
       console.log(e)
       config.world.removeBody(this.body);
       config.container.removeChild(this.graphics)
