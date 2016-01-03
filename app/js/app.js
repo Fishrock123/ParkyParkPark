@@ -10,6 +10,9 @@ var world = config.world,
   stage = config.stage,
   container = config.container;
 
+/* XXX TEST THIS */
+world.sleepMode = p2.World.BODY_SLEEPING
+
 // only initialize when all textures are loaded
 PIXI.loader.once('complete',init);
 

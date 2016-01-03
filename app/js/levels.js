@@ -64,7 +64,7 @@ export class test extends Level {
     this.addWall(101,-565,199,70,0);
     this.addWall(101,-35,199,70,0);
     this.addWall(101,-300,203,333,0);
-    this.addSpawn(config.scaleFactorX*-20, config.scaleFactorY*-95);
-    this.addSpawn(config.scaleFactorX*-20, config.scaleFactorY*-500)
+    this.addSpawn(config.scaleFactorX*120, config.scaleFactorY*-95);
+    this.addSpawn(config.scaleFactorX*120, config.scaleFactorY*-500)
   }
 }

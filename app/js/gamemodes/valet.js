@@ -24,7 +24,7 @@ export default class Valet extends GameMode {
       }
       gamestate.player.update();
 
-      if (p2.vec2.length(gamestate.player.body.velocity) <= 0.05 &&   gamestate.carsLeft > 0) {
+      if (p2.vec2.length(gamestate.player.body.velocity) <= 8 &&   gamestate.carsLeft > 0) {
         gamestate.player.body.backWheel.setBrakeForce(2);
         gamestate.player.boxShape.collisionGroup = config.CAR;
         gamestate.cars.push(gamestate.player);
